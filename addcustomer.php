@@ -15,8 +15,8 @@
 
 
 // initializing variables
-$item_name = "";
-$item_price    = "";
+// $customer_name = "";
+// $product    = "";
 
 
 // connect to the database
@@ -27,25 +27,25 @@ if (mysqli_connect_errno())
     }
 
 // Add item
-if (isset($_POST['add'])) {
+if (isset($_POST['addCustomer'])) {
   // receive all input values from the form
   echo "connect";
-  $item_name=mysqli_real_escape_string($db, $_POST['product_name']);
-  $item_price=mysqli_real_escape_string($db, $_POST['price']);
-  $quant=mysqli_real_escape_string($db, $_POST['quant']);
+  $customer_name=mysqli_real_escape_string($db, $_POST['customer_name']);
+  $added_date=mysqli_real_escape_string($db, $_POST['added_date']);
+  $phone_number=mysqli_real_escape_string($db, $_POST['phone_number']);
   
-    $query = "INSERT INTO product (product_name,price,quantity) 
-  			  VALUES('$item_name','$item_price','$quant')";
+    $query = "INSERT INTO customer (customer_name,added_date,phone_number) 
+  			  VALUES('$customer_name','$added_date','$phone_number')";
       if(mysqli_query($db, $query))
       {
       echo "<script>alert('Successfully stored');</script>";
 				
     }
     else{
-        echo"<script>alert('Something wrong!!!');</script>";
+        echo"<script>alert('Somthing wrong!!!');</script>";
     }
   	
-  	header('location: table.php');
+  	header('location: customer.php');
   
 }
 ?>

@@ -15,8 +15,8 @@
 
 
 // initializing variables
-$item_name = "";
-$item_price    = "";
+// $customer_name = "";
+// $product    = "";
 
 
 // connect to the database
@@ -27,15 +27,18 @@ if (mysqli_connect_errno())
     }
 
 // Add item
-if (isset($_POST['add'])) {
+if (isset($_POST['makeOrder'])) {
   // receive all input values from the form
   echo "connect";
-  $item_name=mysqli_real_escape_string($db, $_POST['product_name']);
-  $item_price=mysqli_real_escape_string($db, $_POST['price']);
-  $quant=mysqli_real_escape_string($db, $_POST['quant']);
+  $product_name=mysqli_real_escape_string($db, $_POST['product_name']);
+  $quantity=mysqli_real_escape_string($db, $_POST['quantity']);
+  $order_date=mysqli_real_escape_string($db, $_POST['order_date']);
+  $order_price=mysqli_real_escape_string($db, $_POST['order_price']);
+  $client_name=mysqli_real_escape_string($db, $_POST['client_name']);
+  $tel_number=mysqli_real_escape_string($db, $_POST['tel_number']);
   
-    $query = "INSERT INTO product (product_name,price,quantity) 
-  			  VALUES('$item_name','$item_price','$quant')";
+    $query = "INSERT INTO orders (product_name,quantity,order_date,order_price,client_name,tel_number) 
+  			  VALUES('$product_name','$quantity','$order_date','$order_price','$client_name','$tel_number')";
       if(mysqli_query($db, $query))
       {
       echo "<script>alert('Successfully stored');</script>";
@@ -45,7 +48,7 @@ if (isset($_POST['add'])) {
         echo"<script>alert('Something wrong!!!');</script>";
     }
   	
-  	header('location: table.php');
+  	header('location: order.php');
   
 }
 ?>

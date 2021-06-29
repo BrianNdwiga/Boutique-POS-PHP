@@ -67,11 +67,11 @@ if (isset($_GET['logout'])) {
                             <li>
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
-                            <li>
+                            <li  class="active">
                                 <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Orders</span></a>
                             </li>
-                            <li class="active">
+                            <li>
                                 <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
@@ -119,7 +119,7 @@ if (isset($_GET['logout'])) {
                         <div class="breadcrumbs-area clearfix">
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href=""><span>Item Records</span></a></li>
+                                <li><a href=""><span>Orders Table</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -138,17 +138,7 @@ if (isset($_GET['logout'])) {
             <!-- page title area end -->
             <div class="container">
 
-                <h1 style="text-align:center">Add Item Here</h1>
-
-                <body class="col-lg-12">
-                    <form method="POST" class="form-inline" action="additem.php" style="align-items: center; justify-content: center;">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="product_name" placeholder="product_name" required>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="price" placeholder="price" required>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="quant" id="quant" min="1" max="" placeholder="Quantity" required>
-                        <button type="submit" class="btn btn-primary mb-2" name="add"><i class="fas fa-plus"></i> Add item</button>
-                    </form>
-
-                </body>
+                <h1 style="text-align:center">Make Order Here</h1>
                 <div class="main-content-inner">
                     <div class="row">
 
@@ -156,23 +146,31 @@ if (isset($_GET['logout'])) {
                         <div class="col-lg-12 ">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="header-title">Products</h4>
+                                    <div class="toptable">
+                                        <h4 class="header-title col col-lg-8">Orders</h4>
+                                        <a href="orderform.php" class="col">
+                                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Make Order Here</button>
+                                        </a>
+                                    </div>
                                     <div class="single-table">
                                         <div class="table-responsive">
                                             <table class="table text-dark text-center">
                                                 <thead class="text-uppercase">
                                                     <tr class="table-active">
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Customer Name</th>
+                                                        <th scope="col">Phone Number</th>
+                                                        <th scope="col">Product Name</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Order Date</th>
+                                                        <th scope="col">Order Price</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM product";
+                                                    $sql = "SELECT * FROM orders";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -182,12 +180,14 @@ if (isset($_GET['logout'])) {
                                                     ?>
                                                             <tr>
                                                                 <th><?php echo $count ?></th>
+                                                                <th><?php echo $row["client_name"] ?></th>
+                                                                <th><?php echo $row["tel_number"] ?></th>
                                                                 <th><?php echo $row["product_name"] ?></th>
-                                                                <th><?php echo $row["price"]  ?></th>
                                                                 <th><?php echo $row["quantity"]  ?></th>
-
-                                                                <th> <a href="up" Edit</a><a href="edit.php?id=<?php echo $row["product_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                        <a href="up" Edit</a><a href="delete.php?id=<?php echo $row["product_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a></th>
+                                                                <th><?php echo $row["order_date"]  ?></th>
+                                                                <th><?php echo $row["order_price"]  ?></th>
+                                                                <th> <a href="up" Edit</a><a href="" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i></a>
+                                                                        <a href="up" Edit</a><a href="" style="color:red;"><i class="fas fa-trash-alt"></i></a></th>
                                                             </tr>
                                                     <?php
 
@@ -209,7 +209,7 @@ if (isset($_GET['logout'])) {
                         <html>
 
                         <head>
-                            <title>Add Item</title>
+                            <title>Add Customer</title>
                             <link rel="stylesheet" type="text/css" href="style.css">
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
                         </head>
@@ -245,6 +245,10 @@ if (isset($_GET['logout'])) {
 
     .user-profile {
         border-radius: 0.8em;
+    }
+    .toptable{
+        display: flex;
+        padding: 10px;
     }
 </style>
 

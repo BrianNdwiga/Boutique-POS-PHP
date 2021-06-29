@@ -106,8 +106,15 @@ if (isset($_GET['logout'])) {
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
+                                <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                    <span>Orders</span></a>
+                            </li>
+                            <li>
                                 <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
+                            </li>
+                            <li>
+                                <a href="customer.php" aria-expanded="true"><i class="ti-user"></i><span>Customers</span></a>
                             </li>
                         </ul>
                         </li>
@@ -187,7 +194,7 @@ if (isset($_GET['logout'])) {
                             </li>
                             <li class="card">
                                 <img src='https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGN1c3RvbWVyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                                <h3 style="text-align: center;"><a href="">Sales</a></h3>
+                                <h3 style="text-align: center;"><a href="">Orders</a></h3>
                             </li>
                     </ul>
                 </div>
