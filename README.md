@@ -7,7 +7,7 @@ Log In Page
 ![Login](https://user-images.githubusercontent.com/67043559/123630659-73e5f180-d81e-11eb-8215-fa0e4d4e8475.png)
 
 Home Page
-![Home](https://user-images.githubusercontent.com/67043559/123630699-7c3e2c80-d81e-11eb-8a30-66173ab751a6.png)
+![image](https://user-images.githubusercontent.com/67043559/124028345-8d449480-d9fc-11eb-9421-07f0ea06223e.png)
 
 Products Page
 ![Products](https://user-images.githubusercontent.com/67043559/123630735-86f8c180-d81e-11eb-8daf-58d0066cce6b.png)
@@ -15,3 +15,20 @@ Products Page
 Edit Product Page
 ![Edit](https://user-images.githubusercontent.com/67043559/123630749-8f50fc80-d81e-11eb-9595-52518a7573df.png)
 
+Customer Page
+![image](https://user-images.githubusercontent.com/67043559/124028734-047a2880-d9fd-11eb-8f5e-2006e23ec7ea.png)
+
+Customer Form Page
+![image](https://user-images.githubusercontent.com/67043559/124028668-f1ffef00-d9fc-11eb-81a8-abcff4e8a80e.png)
+
+Customer Edit Page
+![image](https://user-images.githubusercontent.com/67043559/124028882-2ecbe600-d9fd-11eb-8769-34ffbe4b2fd9.png)
+
+Orders Page
+![image](https://user-images.githubusercontent.com/67043559/124028974-4c00b480-d9fd-11eb-87c9-8cb0a926a8cc.png)
+
+Orders Form Page
+![image](https://user-images.githubusercontent.com/67043559/124029080-6e92cd80-d9fd-11eb-9848-83442f715ce4.png)
+
+Orders Edit Page
+![image](https://user-images.githubusercontent.com/67043559/124029159-82d6ca80-d9fd-11eb-921a-c6a3b72163c4.png)
