@@ -35,6 +35,7 @@ Orders Edit Page
 
 Tables
 Register
+The Password is hashed to increase system security
 ![image](https://user-images.githubusercontent.com/67043559/124033632-dbf52d00-da02-11eb-8d6d-00b820065475.png)
 ![image](https://user-images.githubusercontent.com/67043559/124033729-fcbd8280-da02-11eb-9b27-60d172d7dc39.png)
 
