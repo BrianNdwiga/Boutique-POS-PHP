@@ -11,10 +11,10 @@ if (mysqli_connect_errno())
 if (isset($_GET['id']))
 {
 
-$result = mysqli_query($db,"DELETE FROM product WHERE product_id=".$_GET['id']);
+$result = mysqli_query($db,"DELETE FROM orders WHERE order_id=".$_GET['id']);
 if($result==true)
 	echo "sucess";
-header("Location:table.php");
+header("Location:order.php");
 }
 
 ?>

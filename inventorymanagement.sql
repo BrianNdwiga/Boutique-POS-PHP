@@ -38,14 +38,14 @@ CREATE TABLE `catagory` (
 -- Table structure for table `order`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `order_id` int(20) NOT NULL,
   `client_name` text(20) NOT NULL,
   `tel_number` int(20) NOT NULL,
   `product_name` text(10) NOT NULL,
   `quantity` int(10) NOT NULL,
   `order_date` date NOT NULL,
-  `order_price` int(10) NOT NULL
+  `pickup_location` text(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

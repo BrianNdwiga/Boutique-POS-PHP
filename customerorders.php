@@ -6,7 +6,8 @@ include('config.php');
 if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 
     $id = $_GET['id'];
-    $result = mysqli_query($db, "SELECT * FROM customer JOIN orders ON phone_number= tel_number OR customer_name = client_name WHERE customer_id=" . $_GET['id'] );
+    $result = mysqli_query($db, 
+    "SELECT order_id,customer_name, tel_number, added_date, o.product_name,order_quantity,order_date,(order_quantity*p.price) AS total_price FROM customer AS c JOIN orders As o JOIN product AS p ON phone_number= tel_number OR customer_name = client_name WHERE customer_id=" . $_GET['id'] );
 
     $row = mysqli_fetch_array($result);
 
@@ -14,10 +15,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 
         $id = $row['order_id'];
         $customer_name = $row['customer_name'];
+        $phone_number = $row['tel_number'];
+        $added_date = $row['added_date'];
+
         $product_name = $row['product_name'];
-        $quantity = $row['quantity'];
+        $order_quantity = $row['order_quantity'];
         $order_date = $row['order_date'];
-        $order_price = $row['order_price'];
+        $total_price = $row['total_price'];
     } else {
         echo "No results!";
     }
@@ -39,27 +43,31 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
     <div class="container">
         <a class="back" href="customer.php">
             <i class="fas fa-arrow-left"></i>
-            Back to Products Page
+            Back to Customers Page
         </a>
         <br>
         <h1 style="padding: 10px; text-align:center;"><?php echo $customer_name; ?>'s Orders</h1>
+        <h2>Details</h2>
+        <h4>Name : <?php echo $customer_name; ?></h4>
+        <h4>Phone Number : <?php echo $phone_number; ?></h4>
+        <h4>Created on : <?php echo $added_date; ?></h4>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Customer Name</th>
-                    <th scope="col">Date Added</th>
-                    <th scope="col">Phone Number</th>
+                    <th scope="col">Order Quantity</th>
                     <th scope="col">Order Date</th>
+                    <th scope="col">Total Price</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row"><?php echo $id; ?></th>
                     <td><?php echo $product_name; ?></td>
-                    <td><?php echo $quantity; ?></td>
+                    <td><?php echo $order_quantity; ?></td>
                     <td><?php echo $order_date; ?></td>
-                    <td><?php echo $order_price; ?></td>
+                    <td><?php echo $total_price; ?></td>
                 </tr>
             </tbody>
         </table>
@@ -67,7 +75,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 </body>
 <style>
     .container {
-        margin: 8em;
+        padding: 30px;
         place-content: center;
         justify-content: center;
         font: 16px;

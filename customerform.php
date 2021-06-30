@@ -17,10 +17,19 @@
         <br>
         <h1 style="padding: 10px; text-align:center;">Add Customers</h1>
         <form method="post" action="addcustomer.php">
+                <div class="form-group">
+                    <label for="exampleInput1">Customer Name :</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="customer_name" placeholder="Customer Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInput1">Phone Number :</label>
+                    <input type="tel" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="phone_number" id="phone" min="1" max="" placeholder="Phone Number" required>
+                </div>
             <div class="form-group">
-                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="customer_name" placeholder="Customer Name" required>
-                <input type="tel" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="phone_number" id="phone" min="1" max="" placeholder="Phone Number" required>
-                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="added_date" placeholder="Date" required>
+                <div class="form-group">
+                    <label for="exampleInput1">Creation Date :</label>
+                    <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="added_date" placeholder="Date" required>
+                </div>                
                 <button type="submit" class="btn btn-info btn-lg btn-block mb-2" name="addCustomer"> Add Customer</button>
         </form>
     </div>

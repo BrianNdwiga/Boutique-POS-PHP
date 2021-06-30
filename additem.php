@@ -39,13 +39,10 @@ if (isset($_POST['add'])) {
       if(mysqli_query($db, $query))
       {
       echo "<script>alert('Successfully stored');</script>";
-				
     }
     else{
         echo"<script>alert('Something wrong!!!');</script>";
     }
-  	
-  	header('location: table.php');
-  
+  	header('location: product.php');
 }
 ?>

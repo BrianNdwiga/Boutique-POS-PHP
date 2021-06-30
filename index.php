@@ -10,7 +10,7 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['username']);
     unset($_SESSION['first_name']);
     unset($_SESSION['last_name']);
-    header("location: table.php");
+    header("location: product.php");
 }
 ?>
 <!DOCTYPE html>
@@ -106,11 +106,11 @@ if (isset($_GET['logout'])) {
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
                             <li>
-                                <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
                             <li>
@@ -182,21 +182,21 @@ if (isset($_GET['logout'])) {
                 <?php endif ?>
                 <div class="fill">
                     <ul class="card-wrapper">
-                        <a href="table.php">
-                            <li class="card">
-                                <img src='https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                                <h3 style="text-align: center;">Products</h3>
-                            </li>
-                        </a>
-                            <li class="card">
-                                <img src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGhhcHB5JTIwY3VzdG9tZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                                <h3 style="text-align: center;"><a href="">Customers</a></h3>
-                            </li>
-                            <li class="card">
-                                <img src='https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGN1c3RvbWVyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                                <h3 style="text-align: center;"><a href="">Orders</a></h3>
-                            </li>
-                    </ul>
+                        <li class="card">
+                            <img src='https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
+                            <h3 style="text-align: center;"><a href="product.php">Products</a></h3>
+                        </li>
+
+                        <li class="card">
+                            <img src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGhhcHB5JTIwY3VzdG9tZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
+                            <h3 style="text-align: center;"><a href="customer.php">Customers</a></h3>
+                        </li>
+
+                        <li class="card">
+                            <img src='https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGN1c3RvbWVyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
+                            <h3 style="text-align: center;"><a href="order.php">Orders</a></h3>
+                        </li>
+                        </a </ul>
                 </div>
             </div>
 

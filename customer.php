@@ -68,11 +68,11 @@ if (isset($_GET['logout'])) {
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
                             <li>
-                                <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
                             <li class="active">
@@ -181,9 +181,10 @@ if (isset($_GET['logout'])) {
                                                                 <th><?php echo $row["customer_name"] ?></th>
                                                                 <th><?php echo $row["phone_number"]  ?></th>
                                                                 <th><?php echo $row["added_date"]  ?></th>
-                                                                <th><a href="up" Edit</a><a href="customerorders.php?id=<?php echo $row["customer_id"] ?>" style="color:red;">All Transactions</a></th>
-                                                                    <th> <a href="up" Edit</a><a href="" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                            <a href="up" Edit</a><a href="" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                <th><a href="up" Edit</a><a href="customerorders.php?id=<?php echo $row["customer_id"] ?>" style="color:purple; cursor:pointer;">All Transactions</a></th>
+                                                                    <th> 
+                                                                    <a href="up" Edit</a><a href="editcustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
+                                                                    <a href="up" Edit</a><a href="deletecustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
                                                                     </th>
                                                             </tr>
                                                     <?php

@@ -68,11 +68,11 @@ if (isset($_GET['logout'])) {
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
                             <li class="active">
-                                <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
                             <li>
@@ -166,13 +166,14 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Remaining Stock</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM product";
+                                                    $sql = "SELECT product_id,p.product_name,price, quantity, (quantity-order_quantity) AS Remaining_stock FROM `product` As p LEFT JOIN `orders` AS o ON o.product_name=p.product_name;";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -185,9 +186,11 @@ if (isset($_GET['logout'])) {
                                                                 <th><?php echo $row["product_name"] ?></th>
                                                                 <th><?php echo $row["price"]  ?></th>
                                                                 <th><?php echo $row["quantity"]  ?></th>
-
-                                                                <th> <a href="up" Edit</a><a href="edit.php?id=<?php echo $row["product_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                        <a href="up" Edit</a><a href="delete.php?id=<?php echo $row["product_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a></th>
+                                                                <th><?php echo $row["Remaining_stock"]  ?></th>
+                                                                <th>
+                                                                    <a href="up" Edit</a><a href="editproduct.php?id=<?php echo $row["product_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
+                                                                    <a href="up" Edit</a><a href="deleteproduct.php?id=<?php echo $row["product_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                </th>
                                                             </tr>
                                                     <?php
 

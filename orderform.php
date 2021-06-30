@@ -2,8 +2,9 @@
 include('config.php');
 
 $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-$sql = "SELECT customer_name,product_name,phone_number FROM product, customer ";
+$sql = "SELECT DISTINCT customer_name,p.product_name,phone_number,(quantity-order_quantity) AS Remaining_stock,price FROM product As p, customer AS c, orders As o";
 $result = $conn->query($sql);
+$option = '';
 
 if ($result->num_rows >  0) {
 
@@ -12,7 +13,21 @@ if ($result->num_rows >  0) {
         $customer_name = $row['customer_name'];
         $product_name = $row['product_name'];
         $phone_number = $row['phone_number'];
+        $option .= '<option value = "' . $row['product_name'] . '">' . $row['product_name'] . ' - ' . $row['Remaining_stock'] . ' remaining</option>';
     }
+}
+?>
+<?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: login.php");
 }
 ?>
 
@@ -37,35 +52,42 @@ if ($result->num_rows >  0) {
         <form method="post" action="makeorder.php">
             <div class="form-group">
                 <div class="form-row">
+                <div class="form-group" style="display: none;">
+                <input type="text" value="<?php echo $_SESSION['username'] ?>" class="form-control mb-2 mr-sm-2" name="made_by">
+                </div>
+                <br>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Customer Name : </label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="client_name" id="client_name" min="1" max="" placeholder="Customer Name" required>
-                        <datalist id="datalistOptions">
-                            <option value="<?php echo $customer_name; ?>">
-                        </datalist>
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="client_name" id="client_name" min="1" max="" placeholder="Customer Name" required>
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Customer Phone Number : </label>
-                        <input type="tel" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="tel_number" id="phone_number" min="1" max="" placeholder="Phone Number" required>
+                        <input type="tel" class="form-control mb-2 mr-sm-2" name="tel_number" id="tel_number" min="1" max="" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Product Name : </label>
                         <select class="custom-select" aria-label="Default select example" name="product_name">
-                            <option selected>Open this select menu</option>
-                            <option value="<?php echo $product_name; ?>"><?php echo $product_name; ?></option>
+                            <option selected>Choose the Product</option>
+                            <?php echo $option; ?>
                         </select>
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label"> Quantity : </label>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="quantity" placeholder="Quantity" required>
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="order_quantity" placeholder="Quantity" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
-                        <label for="exampleFormControlInput1" class="form-label">Order Price : </label>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="order_price" placeholder="Order Price" required>
+                        <label for="exampleFormControlInput1" class="form-label">Pickup Location : </label>
+                        <select class="custom-select" id="inputGroupSelect01" name="pickup_location">
+                            <option selected>Choose...</option>
+                            <option value="Nairobi CBD">Nairobi CBD</option>
+                            <option value="Nakuru">Nakuru</option>
+                            <option value="Kikuyu">Kikuyu</option>
+                            <option value="Thika">Thika</option>
+                        </select>
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Order Date : </label>

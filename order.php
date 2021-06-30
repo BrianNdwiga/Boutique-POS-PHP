@@ -68,11 +68,11 @@ if (isset($_GET['logout'])) {
                                 <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li  class="active">
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
                             <li>
-                                <a href="table.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
                             <li>
@@ -137,8 +137,7 @@ if (isset($_GET['logout'])) {
             </div>
             <!-- page title area end -->
             <div class="container">
-
-                <h1 style="text-align:center">Make Order Here</h1>
+                <h3 style="text-align:center">Make Order Here</h3>
                 <div class="main-content-inner">
                     <div class="row">
 
@@ -163,18 +162,20 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">Product Name</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Order Date</th>
-                                                        <th scope="col">Order Price</th>
+                                                        <th scope="col">Pick-Up Location</th>
+                                                        <th scope="col">Total Price</th>
+                                                        <th scope="col">Served By</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM orders";
+                                                    // $sql = "SELECT * FROM orders";
+                                                    $sql = "SELECT DISTINCT order_id,order_date,order_quantity,o.product_name,client_name,tel_number,pickup_location,made_by,(order_quantity*p.price) AS total_price FROM `orders` AS o LEFT JOIN `product` As p ON p.product_name=o.product_name ORDER BY order_id ASC";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
-
                                                         while ($row = $result->fetch_assoc()) {
                                                             $count = $count + 1;
                                                     ?>
@@ -183,11 +184,15 @@ if (isset($_GET['logout'])) {
                                                                 <th><?php echo $row["client_name"] ?></th>
                                                                 <th><?php echo $row["tel_number"] ?></th>
                                                                 <th><?php echo $row["product_name"] ?></th>
-                                                                <th><?php echo $row["quantity"]  ?></th>
+                                                                <th><?php echo $row["order_quantity"]  ?></th>
                                                                 <th><?php echo $row["order_date"]  ?></th>
-                                                                <th><?php echo $row["order_price"]  ?></th>
-                                                                <th> <a href="up" Edit</a><a href="" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i></a>
-                                                                        <a href="up" Edit</a><a href="" style="color:red;"><i class="fas fa-trash-alt"></i></a></th>
+                                                                <th><?php echo $row["pickup_location"]  ?></th>
+                                                                <th><?php echo $row["total_price"]  ?></th>
+                                                                <th><?php echo $row["made_by"]  ?></th>
+                                                                <th> 
+                                                                    <a href="up" Edit</a><a href="editorder.php?id=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> </a>
+                                                                    <a href="up" Edit</a><a href="deleteorder.php?id=<?php echo $row["order_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                                                                </th>
                                                             </tr>
                                                     <?php
 
