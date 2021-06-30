@@ -32,3 +32,9 @@ Orders Form Page
 
 Orders Edit Page
 ![image](https://user-images.githubusercontent.com/67043559/124029159-82d6ca80-d9fd-11eb-921a-c6a3b72163c4.png)
+
+Tables
+Register
+![image](https://user-images.githubusercontent.com/67043559/124033632-dbf52d00-da02-11eb-8d6d-00b820065475.png)
+![image](https://user-images.githubusercontent.com/67043559/124033729-fcbd8280-da02-11eb-9b27-60d172d7dc39.png)
+
