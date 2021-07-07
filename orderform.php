@@ -13,7 +13,8 @@ if ($result->num_rows >  0) {
         $customer_name = $row['customer_name'];
         $product_name = $row['product_name'];
         $phone_number = $row['phone_number'];
-        $option .= '<option value = "' . $row['product_name'] . '">' . $row['product_name'] . ' - ' . $row['Remaining_stock'] . ' remaining</option>';
+        $product_name = $row['product_name'];
+        // $option .= '<option value = "' . $row['product_name'] . '">' . $row['product_name'] . ' - ' . $row['Remaining_stock'] . ' remaining</option>';
     }
 }
 ?>
@@ -68,10 +69,10 @@ if (isset($_GET['logout'])) {
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Product Name : </label>
-                        <select class="custom-select" aria-label="Default select example" name="product_name">
+                        <!-- <select class="custom-select" aria-label="Default select example" name="product_name">
                             <option selected>Choose the Product</option>
-                            <?php echo $option; ?>
-                        </select>
+                        </select> -->
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="product_name" placeholder="product_name" required>
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label"> Quantity : </label>

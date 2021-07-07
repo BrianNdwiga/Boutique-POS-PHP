@@ -38,11 +38,27 @@ CREATE TABLE `catagory` (
 -- Table structure for table `order`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `order_id` int(20) NOT NULL,
+  `client_name` text(20) NOT NULL,
+  `tel_number` int(20) NOT NULL,
+  `product_name` text(10) NOT NULL,
   `quantity` int(10) NOT NULL,
   `order_date` date NOT NULL,
-  `order_price` int(10) NOT NULL
+  `pickup_location` text(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(20) NOT NULL,
+  `customer_name` text(10) NOT NULL,
+  `added_date` date NOT NULL,
+  `phone_number` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -129,6 +145,13 @@ ALTER TABLE `order`
   ADD PRIMARY KEY (`order_id`);
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -161,6 +184,13 @@ ALTER TABLE `stock`
 --
 ALTER TABLE `catagory`
   MODIFY `catagory_id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `order`
 --

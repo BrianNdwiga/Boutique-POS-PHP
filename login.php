@@ -30,7 +30,7 @@
                         <?php include('errors.php'); ?>
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="username" id="username" required="_required"placeholder="username"/>
+                                <input type="text" name="username" id="username" required="_required"placeholder="Email"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>

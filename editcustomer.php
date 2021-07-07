@@ -54,7 +54,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
         <h1 style="padding: 10px; text-align:center;">Edit Records</h1>
         <form method="post" action="editcustomer.php">
             <div class="form-group">
-                <input class="form-control" type="text" name="id" value="<?php echo $id; ?>">
+                <input class="form-control" type="hidden" name="id" value="<?php echo $id; ?>">
                 <label class="form-check-label" for="inlineFormCheck">
                    Customer Name :
                 </label>
