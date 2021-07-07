@@ -7,11 +7,10 @@ if (isset($_POST['editorder'])) {
     $client_name = mysqli_real_escape_string($db, $_POST['client_name']);
     $tel_number = mysqli_real_escape_string($db, $_POST['tel_number']);
     $product_name = mysqli_real_escape_string($db, $_POST['product_name']);
-    $order_quantity = mysqli_real_escape_string($db, $_POST['order_quantity']);
     $pickup_location = mysqli_real_escape_string($db, $_POST['pickup_location']);
     $order_date = mysqli_real_escape_string($db, $_POST['order_date']);
 
-    mysqli_query($db, "UPDATE orders SET client_name='$client_name', tel_number='$tel_number' ,product_name='$product_name',order_quantity='$order_quantity',pickup_location='$pickup_location',order_date='$order_date' WHERE order_id='$id'");
+    mysqli_query($db, "UPDATE orders SET client_name='$client_name', tel_number='$tel_number' ,product_name='$product_name',pickup_location='$pickup_location',order_date='$order_date' WHERE order_id='$id'");
 
     header("Location:order.php");
 }
@@ -30,7 +29,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
         $client_name = $row['client_name'];
         $tel_number = $row['tel_number'];
         $product_name = $row['product_name'];
-        $order_quantity = $row['order_quantity'];
         $pickup_location = $row['pickup_location'];
         $order_date = $row['order_date'];
     } else {
@@ -52,7 +50,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 <body>
 
     <div class="container">
-        <a class="back" href="table.php">
+        <a class="back" href="order.php">
             <i class="fas fa-arrow-left"></i>
             Back to orders Page
         </a>
@@ -75,13 +73,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col">
+                    <div class="col-12">
                         <label for="exampleFormControlInput1" class="form-label">Product Name : </label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" value="<?php echo $product_name; ?>" name="product_name" placeholder="Quantity" required>
-                    </div>
-                    <div class="col">
-                        <label for="exampleFormControlInput1" class="form-label"> Quantity : </label>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" value="<?php echo $order_quantity; ?>" name="order_quantity" placeholder="Quantity" required>
                     </div>
                 </div>
                 <div class="form-row">

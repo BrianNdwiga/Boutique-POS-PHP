@@ -160,7 +160,6 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">Customer Name</th>
                                                         <th scope="col">Phone Number</th>
                                                         <th scope="col">Product Name</th>
-                                                        <th scope="col">Quantity</th>
                                                         <th scope="col">Order Date</th>
                                                         <th scope="col">Pick-Up Location</th>
                                                         <th scope="col">Total Price</th>
@@ -172,7 +171,7 @@ if (isset($_GET['logout'])) {
                                                     <?php
                                                     $conn = new mysqli("localhost", "root", "", "inventorymanagement");
                                                     // $sql = "SELECT * FROM orders";
-                                                    $sql = "SELECT DISTINCT order_id,order_date,order_quantity,o.product_name,client_name,tel_number,pickup_location,made_by,(order_quantity*p.price) AS total_price FROM `orders` AS o LEFT JOIN `product` As p ON p.product_name=o.product_name ORDER BY order_id ASC";
+                                                    $sql = "SELECT DISTINCT order_id,order_date,o.product_name,client_name,tel_number,pickup_location,o.total_price,made_by FROM `orders` AS o LEFT JOIN `product` As p ON p.product_name=o.product_name ORDER BY order_id ASC";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -184,7 +183,6 @@ if (isset($_GET['logout'])) {
                                                                 <th><?php echo $row["client_name"] ?></th>
                                                                 <th><?php echo $row["tel_number"] ?></th>
                                                                 <th><?php echo $row["product_name"] ?></th>
-                                                                <th><?php echo $row["order_quantity"]  ?></th>
                                                                 <th><?php echo $row["order_date"]  ?></th>
                                                                 <th><?php echo $row["pickup_location"]  ?></th>
                                                                 <th><?php echo $row["total_price"]  ?></th>
