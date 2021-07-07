@@ -2,7 +2,7 @@
 include('config.php');
 
 $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-$sql = "SELECT DISTINCT customer_name,p.product_name,phone_number,(quantity-order_quantity) AS Remaining_stock,price FROM product As p, customer AS c, orders As o";
+$sql = "SELECT DISTINCT c.customer_name,p.product_name,c.phone_number,p.price FROM product As p, customer AS c, orders As o";
 $result = $conn->query($sql);
 $option = '';
 
@@ -13,7 +13,7 @@ if ($result->num_rows >  0) {
         $product_name = $row['product_name'];
         $phone_number = $row['phone_number'];
         $product_name = $row['product_name'];
-        $total_price = $row['total_price'];
+        // $total_price = $row['total_price'];
         // $option .= '<option value = "' . $row['product_name'] . '">' . $row['product_name'] . ' - ' . $row['Remaining_stock'] . ' remaining</option>';
     }
 }
