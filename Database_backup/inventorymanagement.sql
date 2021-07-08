@@ -40,7 +40,7 @@ CREATE TABLE `catagory` (
 
 CREATE TABLE `orders` (
   `order_id` int(20) NOT NULL,
-  `client_name` text(20) NOT NULL,
+  `client_id` text(20) NOT NULL,
   `tel_number` int(20) NOT NULL,
   `product_name` text(10) NOT NULL,
   `quantity` int(10) NOT NULL,
@@ -97,10 +97,10 @@ CREATE TABLE `purchase` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `register`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `register` (
+CREATE TABLE `users` (
   `username` varchar(20) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
@@ -110,10 +110,10 @@ CREATE TABLE `register` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `register`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `register` (`username`, `first_name`, `last_name`, `mobile`, `email`, `password_1`) VALUES
+INSERT INTO `users` (`username`, `first_name`, `last_name`, `mobile`, `email`, `password_1`) VALUES
 ('frpartho', 'Partho', 'Bala', 1686998128, 'parthobala019@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
@@ -164,9 +164,9 @@ ALTER TABLE `purchase`
   ADD PRIMARY KEY (`purchase_id`);
 
 --
--- Indexes for table `register`
+-- Indexes for table `users`
 --
-ALTER TABLE `register`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
 
 --

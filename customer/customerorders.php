@@ -1,13 +1,13 @@
 <?php
 
-include('config.php');
+include('../config/config.php');
 
 
 if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 
     $id = $_GET['id'];
     $result = mysqli_query($db, 
-    "SELECT order_id,customer_name, tel_number, added_date, o.product_name,order_quantity,order_date,(order_quantity*p.price) AS total_price FROM customer AS c JOIN orders As o JOIN product AS p ON phone_number= tel_number OR customer_name = client_name WHERE customer_id=" . $_GET['id'] );
+    "SELECT order_id,customer_name, tel_number, added_date, o.product_name,order_quantity,order_date,(order_quantity*p.price) AS total_price FROM customer AS c JOIN orders As o JOIN product AS p ON phone_number= tel_number OR customer_name = client_id WHERE customer_id=" . $_GET['id'] );
 
     $row = mysqli_fetch_array($result);
 

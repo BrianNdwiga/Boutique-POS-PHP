@@ -7,6 +7,8 @@ $email    = "";
 
 $errors = array(); 
 
+$_SESSION['user_id']=$user_id;
+
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'inventorymanagement');
 if (mysqli_connect_errno())
@@ -39,7 +41,7 @@ if (isset($_POST['reg_user'])) {
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM register WHERE username='$username' OR email='$email' LIMIT 1";
+  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
   
@@ -57,7 +59,7 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO register (username,email,password_1,first_name,last_name,mobile) 
+  	$query = "INSERT INTO users (username,email,password_1,first_name,last_name,mobile) 
   			  VALUES('$username', '$email', '$password','$first_name','$last_name',$mobile)";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
@@ -90,12 +92,12 @@ if(isset($_POST['submit']))
 {
     echo "Password is invalid";
 }
-      $query = "SELECT * FROM register WHERE username='$username' AND password_1 ='$password'";
+      $query = "SELECT * FROM users WHERE username='$username' AND password_1 ='$password'";
 		
 		
 		
 		
-		$sql="SELECT first_name,last_name FROM register WHERE username='$username' AND password_1 ='$password'";
+		$sql="SELECT first_name,last_name FROM users WHERE username='$username' AND password_1 ='$password'";
 		$result=mysqli_query($db,$sql);  
 		$row=mysqli_fetch_assoc($result);
 	 
@@ -106,9 +108,8 @@ if(isset($_POST['submit']))
       if ($res) 
       {
         $_SESSION['username'] = $username;
-        $_SESSION['first_name'] =$row["first_name"];
-		
-		$_SESSION['last_name'] =$row["last_name"];
+        $_SESSION['first_name'] =$row["first_name"];	
+		    $_SESSION['last_name'] =$row["last_name"];
         header('location: index.php');
       }
       else 

@@ -102,19 +102,19 @@ if (isset($_GET['logout'])) {
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li class="active">
-                                <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
+                            <li  class="active">
+                                <a href="./index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
+                                <a href="./orders/order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
                             <li>
-                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
+                                <a href="./product/product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
                             <li>
-                                <a href="customer.php" aria-expanded="true"><i class="ti-user"></i><span>Customers</span></a>
+                                <a href="./customer/customer.php" aria-expanded="true"><i class="ti-user"></i><span>Customers</span></a>
                             </li>
                         </ul>
                         </li>
@@ -184,17 +184,17 @@ if (isset($_GET['logout'])) {
                     <ul class="card-wrapper">
                         <li class="card">
                             <img src='https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzd8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                            <h3 style="text-align: center;"><a href="product.php">Products</a></h3>
+                            <h3 style="text-align: center;"><a href="./product/product.php">Products</a></h3>
                         </li>
 
                         <li class="card">
                             <img src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGhhcHB5JTIwY3VzdG9tZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                            <h3 style="text-align: center;"><a href="customer.php">Customers</a></h3>
+                            <h3 style="text-align: center;"><a href="./customer/customer.php">Customers</a></h3>
                         </li>
 
                         <li class="card">
                             <img src='https://images.unsplash.com/photo-1499083097717-a156f85f0516?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGN1c3RvbWVyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' alt=''>
-                            <h3 style="text-align: center;"><a href="order.php">Orders</a></h3>
+                            <h3 style="text-align: center;"><a href="./orders/order.php">Orders</a></h3>
                         </li>
                         </a </ul>
                 </div>

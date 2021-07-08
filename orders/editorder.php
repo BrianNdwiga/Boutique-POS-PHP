@@ -4,13 +4,13 @@ include('config.php');
 
 if (isset($_POST['editorder'])) {
     $id = $_POST['id'];
-    $client_name = mysqli_real_escape_string($db, $_POST['client_name']);
+    $client_id = mysqli_real_escape_string($db, $_POST['client_id']);
     $tel_number = mysqli_real_escape_string($db, $_POST['tel_number']);
     $product_name = mysqli_real_escape_string($db, $_POST['product_name']);
     $pickup_location = mysqli_real_escape_string($db, $_POST['pickup_location']);
     $order_date = mysqli_real_escape_string($db, $_POST['order_date']);
 
-    mysqli_query($db, "UPDATE orders SET client_name='$client_name', tel_number='$tel_number' ,product_name='$product_name',pickup_location='$pickup_location',order_date='$order_date' WHERE order_id='$id'");
+    mysqli_query($db, "UPDATE orders SET client_id='$client_id', tel_number='$tel_number' ,product_name='$product_name',pickup_location='$pickup_location',order_date='$order_date' WHERE order_id='$id'");
 
     header("Location:order.php");
 }
@@ -26,7 +26,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
     if ($row) {
 
         $id = $row['order_id'];
-        $client_name = $row['client_name'];
+        $client_id = $row['client_id'];
         $tel_number = $row['tel_number'];
         $product_name = $row['product_name'];
         $pickup_location = $row['pickup_location'];
@@ -65,7 +65,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
                 <br>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Customer Name : </label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" value="<?php echo $client_name; ?>" name="client_name" id="client_name" min="1" max="" placeholder="Customer Name" required>
+                        <input type="text" class="form-control mb-2 mr-sm-2" value="<?php echo $client_id; ?>" name="client_id" id="client_id" min="1" max="" placeholder="Customer Name" required>
                     </div>
                     <div class="col">
                         <label for="exampleFormControlInput1" class="form-label">Customer Phone Number : </label>

@@ -138,6 +138,46 @@ if (!empty($_GET["action"])) {
 			?>
 		</div>
 	</div>
+	<div>
+		<form method="POST" action="makeorder.php">
+			<input type="hidden" value="
+		<?php
+		foreach ($_SESSION["cart_item"] as $item) {
+			$product_id = $item["product_id"];
+			echo $product_id . ' ';
+		}
+		?>
+		" name="product_id" readonly>
+			<input type="hidden" value="
+		<?php
+		foreach ($_SESSION["cart_item"] as $item) {
+			$item_price = $item["quantity"] * $item["price"];
+			echo $item_price  . ' ';
+		}
+		?>
+			" name="amount" readonly>
+			<input type="hidden" value="
+			<?php
+			$sql = "SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1";
+			$result = $conn->query($sql);
+			if ($result->num_rows >  0) {
+				while ($row = $result->fetch_assoc()) {
+					echo $row['order_id'];
+				}
+			}
+			?>
+			" name="order_id" readonly>
+			<input type="hidden" value="
+		<?php
+		foreach ($_SESSION["cart_item"] as $item) {
+			$quantity = $item["quantity"];
+			echo $quantity . ' ';
+		}
+		?>
+		" name="order_quantity" readonly>
+			<button class="btn btn-primary" name="cartdetails" type="submit">Submit Order</button>
+		</form>
+	</div>
 </BODY>
 
 <style>

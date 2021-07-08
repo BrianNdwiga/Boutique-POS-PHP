@@ -30,12 +30,12 @@ if (mysqli_connect_errno())
 if (isset($_POST['add'])) {
   // receive all input values from the form
   echo "connect";
-  $item_name=mysqli_real_escape_string($db, $_POST['product_name']);
-  $item_price=mysqli_real_escape_string($db, $_POST['price']);
-  $quant=mysqli_real_escape_string($db, $_POST['quant']);
+  $product_name=mysqli_real_escape_string($db, $_POST['product_name']);
+  $price=mysqli_real_escape_string($db, $_POST['price']);
+  $quantity=mysqli_real_escape_string($db, $_POST['quantity']);
   
     $query = "INSERT INTO product (product_name,price,quantity) 
-  			  VALUES('$item_name','$item_price','$quant')";
+  			  VALUES('$product_name','$price','$quantity')";
       if(mysqli_query($db, $query))
       {
       echo "<script>alert('Successfully stored');</script>";

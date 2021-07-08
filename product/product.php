@@ -14,35 +14,31 @@ if (isset($_GET['logout'])) {
 
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Point of Sale System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="../assets/images/icon/favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/metisMenu.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <link rel="stylesheet" href="../assets/css/product/bootstrap.min.css">
+    <link rel="stylesheet" href="product/../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/slicknav.min.css">
     <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <!-- others css -->
-    <link rel="stylesheet" href="assets/css/typography.css">
-    <link rel="stylesheet" href="assets/css/default-css.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/typography.css">
+    <link rel="stylesheet" href="../assets/css/default-css.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
     <!-- modernizr css -->
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
     <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
@@ -63,20 +59,20 @@ if (isset($_GET['logout'])) {
             <div class="main-menu">
                 <div class="menu-inner">
                     <nav>
-                        <ul class="metismenu" id="menu">
+                    <ul class="metismenu" id="menu">
                             <li>
-                                <a href="index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
+                                <a href="../index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
+                                <a href="../orders/order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
-                            <li>
-                                <a href="product.php" aria-expanded="true"><i class="fa fa-table"></i>
+                            <li  class="active">
+                                <a href="../product/product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
-                            <li class="active">
-                                <a href="customer.php" aria-expanded="true"><i class="ti-user"></i><span>Customers</span></a>
+                            <li>
+                                <a href="../customer/customer.php" aria-expanded="true"><i class="ti-user"></i><span>Customers</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -119,16 +115,15 @@ if (isset($_GET['logout'])) {
                         <div class="breadcrumbs-area clearfix">
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href=""><span>Customers Table</span></a></li>
+                                <li><a href=""><span>Item Records</span></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
+                            <img class="avatar user-thumb" src="../assets/images/author/avatar.png" alt="avatar">
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['username']; ?> <i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
-
                                 <a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
                             </div>
                         </div>
@@ -138,7 +133,17 @@ if (isset($_GET['logout'])) {
             <!-- page title area end -->
             <div class="container">
 
-                <h1 style="text-align:center">Add Customer Here</h1>
+                <h1 style="text-align:center">Add Item Here</h1>
+
+                <body class="col-lg-12">
+                    <form method="POST" class="form-inline" action="./additem.php" style="align-items: center; justify-content: center;">
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="product_name" placeholder="product_name" required>
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="price" placeholder="price" required>
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="quantity" id="quantity" min="1" max="" placeholder="Quantity" required>
+                        <button type="submit" class="btn btn-primary mb-2" name="add"><i class="fas fa-plus"></i> Add item</button>
+                    </form>
+
+                </body>
                 <div class="main-content-inner">
                     <div class="row">
 
@@ -146,29 +151,23 @@ if (isset($_GET['logout'])) {
                         <div class="col-lg-12 ">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="toptable">
-                                        <h4 class="header-title col col-lg-8">Customers</h4>
-                                        <a href="customerform.php" class="col">
-                                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Add Customer Here</button>
-                                        </a>
-                                    </div>
+                                    <h4 class="header-title">Products</h4>
                                     <div class="single-table">
                                         <div class="table-responsive">
                                             <table class="table text-dark text-center">
                                                 <thead class="text-uppercase">
                                                     <tr class="table-active">
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">Customer Name</th>
-                                                        <th scope="col">Phone Number</th>
-                                                        <th scope="col">Added Date</th>
-                                                        <th scope="col">View</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Quantity</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                                     $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM customer";
+                                                    $sql = "SELECT * FROM `product`;";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -178,14 +177,13 @@ if (isset($_GET['logout'])) {
                                                     ?>
                                                             <tr>
                                                                 <th><?php echo $count ?></th>
-                                                                <th><?php echo $row["customer_name"] ?></th>
-                                                                <th><?php echo $row["phone_number"]  ?></th>
-                                                                <th><?php echo $row["added_date"]  ?></th>
-                                                                <th><a href="up" Edit</a><a href="customerorders.php?id=<?php echo $row["customer_id"] ?>" style="color:purple; cursor:pointer;">All Transactions</a></th>
-                                                                    <th> 
-                                                                    <a href="up" Edit</a><a href="editcustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                    <a href="up" Edit</a><a href="deletecustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
-                                                                    </th>
+                                                                <th><?php echo $row["product_name"] ?></th>
+                                                                <th><?php echo $row["price"]  ?></th>
+                                                                <th><?php echo $row["quantity"]  ?></th>
+                                                                <th>
+                                                                    <a href="up" Edit</a><a href="../product/editproduct.php?id=<?php echo $row["product_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
+                                                                    <a href="up" Edit</a><a href="../product/deleteproduct.php?id=<?php echo $row["product_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                </th>
                                                             </tr>
                                                     <?php
 
@@ -207,7 +205,7 @@ if (isset($_GET['logout'])) {
                         <html>
 
                         <head>
-                            <title>Add Customer</title>
+                            <title>Add Item</title>
                             <link rel="stylesheet" type="text/css" href="style.css">
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
                         </head>
@@ -219,18 +217,18 @@ if (isset($_GET['logout'])) {
 
                     <!-- offset area end -->
                     <!-- jquery latest version -->
-                    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+                    <script src="../assets/js/vendor/jquery-2.2.4.min.js"></script>
                     <!-- bootstrap 4 js -->
-                    <script src="assets/js/popper.min.js"></script>
-                    <script src="assets/js/bootstrap.min.js"></script>
-                    <script src="assets/js/owl.carousel.min.js"></script>
-                    <script src="assets/js/metisMenu.min.js"></script>
-                    <script src="assets/js/jquery.slimscroll.min.js"></script>
-                    <script src="assets/js/jquery.slicknav.min.js"></script>
+                    <script src="../assets/js/popper.min.js"></script>
+                    <script src="../assets/js/bootstrap.min.js"></script>
+                    <script src="../assets/js/owl.carousel.min.js"></script>
+                    <script src="../assets/js/metisMenu.min.js"></script>
+                    <script src="../assets/js/jquery.slimscroll.min.js"></script>
+                    <script src="../assets/js/jquery.slicknav.min.js"></script>
 
                     <!-- others plugins -->
-                    <script src="assets/js/plugins.js"></script>
-                    <script src="assets/js/scripts.js"></script>
+                    <script src="../assets/js/plugins.js"></script>
+                    <script src="../assets/js/scripts.js"></script>
 </body>
 <style>
     th {
@@ -243,11 +241,6 @@ if (isset($_GET['logout'])) {
 
     .user-profile {
         border-radius: 0.8em;
-    }
-
-    .toptable {
-        display: flex;
-        padding: 10px;
     }
 </style>
 

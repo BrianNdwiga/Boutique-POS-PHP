@@ -1,32 +1,32 @@
 <?php
 
-include('config.php');
+include('../config/config.php');
 
-if (isset($_POST['editcustomer'])) {
+if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    $customer_name = mysqli_real_escape_string($db, $_POST['customer_name']);
-    $phone_number = mysqli_real_escape_string($db, $_POST['phone_number']);
-    $added_date = mysqli_real_escape_string($db, $_POST['added_date']);
+    $name = mysqli_real_escape_string($db, $_POST['product_name']);
+    $price = mysqli_real_escape_string($db, $_POST['price']);
+    $quant = mysqli_real_escape_string($db, $_POST['quantity']);
 
-    mysqli_query($db, "UPDATE customer SET customer_name='$customer_name', phone_number='$phone_number' ,added_date='$added_date' WHERE customer_id='$id'");
+    mysqli_query($db, "UPDATE product SET product_name='$name', price='$price' ,quantity='$quant' WHERE product_id='$id'");
 
-    header("Location:customer.php");
+    header("Location:product.php");
 }
 
 
 if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 
     $id = $_GET['id'];
-    $result = mysqli_query($db, "SELECT * FROM customer WHERE customer_id=" . $_GET['id']);
+    $result = mysqli_query($db, "SELECT * FROM product WHERE product_id=" . $_GET['id']);
 
     $row = mysqli_fetch_array($result);
 
     if ($row) {
 
-        $id = $row['customer_id'];
-        $customer_name = $row['customer_name'];
-        $phone_number = $row['phone_number'];
-        $added_date = $row['added_date'];
+        $id = $row['product_id'];
+        $name = $row['product_name'];
+        $price = $row['price'];
+        $quant = $row['quantity'];
     } else {
         echo "No results!";
     }
@@ -48,27 +48,27 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
     <div class="container">
         <a class="back" href="table.php">
             <i class="fas fa-arrow-left"></i>
-            Back to Customers Page
+            Back to Products Page
         </a>
         <br>
         <h1 style="padding: 10px; text-align:center;">Edit Records</h1>
-        <form method="post" action="editcustomer.php">
+        <form method="post" action="editproduct.php">
             <div class="form-group">
                 <input class="form-control" type="hidden" name="id" value="<?php echo $id; ?>">
                 <label class="form-check-label" for="inlineFormCheck">
-                   Customer Name :
+                    Name :
                 </label>
-                <input type="text" name="customer_name" class="form-control" value="<?php echo $customer_name; ?>" />
+                <input type="text" name="product_name" class="form-control" value="<?php echo $name; ?>" />
                 <label class="form-check-label" for="inlineFormCheck">
-                    Phone Number :
+                    Price :
                 </label>
-                <input type="text" name="phone_number" class="form-control" value="<?php echo $phone_number ?>" />
+                <input type="text" name="price" class="form-control" value="<?php echo $price ?>" />
                 <label class="form-check-label" for="inlineFormCheck">
-                    Added Date :
+                    Quantity :
                 </label>
-                <input type="date" name="added_date" class="form-control" value="<?php echo $added_date; ?>" />
+                <input type="text" name="quantity" class="form-control" value="<?php echo $quant; ?>" />
                 <br>
-                <button type="submit" class="btn btn-lg btn-block btn-info" name="editcustomer">Edit Records</button>
+                <button type="submit" class="btn btn-lg btn-block btn-info" name="submit">Edit Records</button>
         </form>
     </div>
 </body>

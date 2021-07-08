@@ -1,20 +1,18 @@
 <?php
-include('config.php');
+include('../config/config.php');
 
 $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-$sql = "SELECT DISTINCT c.customer_name,p.product_name,c.phone_number,p.price FROM product As p, customer AS c, orders As o";
+$sql = "SELECT DISTINCT c.customer_name,c.customer_id,p.product_name,c.phone_number,p.price FROM product As p, customer AS c, orders As o";
 $result = $conn->query($sql);
-$option = '';
+// $option = '';
 
 if ($result->num_rows >  0) {
-
     while ($row = $result->fetch_assoc()) {
-        $customer_name = $row['customer_name'];
+        // $customer_name = $row['customer_name'];
         $product_name = $row['product_name'];
         $phone_number = $row['phone_number'];
         $product_name = $row['product_name'];
-        // $total_price = $row['total_price'];
-        // $option .= '<option value = "' . $row['product_name'] . '">' . $row['product_name'] . ' - ' . $row['Remaining_stock'] . ' remaining</option>';
+        // $option = '<option value = "' . $row['customer_id'] . '">' . $row['customer_name'] . '</option>';
     }
 }
 ?>
@@ -63,27 +61,26 @@ if (isset($_GET['logout'])) {
         <div id="cardBody" class="card-body">
             <div class="tabs">
                 <div id="first" class="tab">
-                    <?php
-                    include('cart.php');
-                    ?>
-                    <br>
-                </div>
-                <div id="second" class="tab">
                     <h3 style="padding: 10px; text-align:center;">Add Orders</h3>
                     <form method="post" action="makeorder.php">
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="form-group" style="display: none;">
-                                    <input type="text" value="<?php echo $_SESSION['username'] ?>" class="form-control mb-2 mr-sm-2" name="made_by">
+                                <div class="form-group">
+                                    <input type="hidden" value="<?php echo $_SESSION['username'] ?>" class="form-control mb-2 mr-sm-2" name="served_by">
                                 </div>
                                 <br>
                                 <div class="col">
                                     <label for="exampleFormControlInput1" class="form-label">Customer Name : </label>
-                                    <input type="text" class="form-control mb-2 mr-sm-2" name="client_name" id="client_name" min="1" max="" placeholder="Customer Name" required>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Customer Phone Number : </label>
-                                    <input type="tel" class="form-control mb-2 mr-sm-2" name="tel_number" id="tel_number" min="1" max="" placeholder="Phone Number" required>
+                                    <select class="form-control" name="customer_id">
+                                        <option disabled selected>-- Select Customer --</option>
+                                        <?php
+                                        $records = mysqli_query($db, "SELECT customer_name,customer_id From customer");  // Use select query here 
+
+                                        while ($data = mysqli_fetch_array($records)) {
+                                            echo "<option value='" . $data['customer_id'] . "'>" . $data['customer_name'] . "</option>";  // displaying data in option menu
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 
@@ -91,7 +88,7 @@ if (isset($_GET['logout'])) {
                                 <div class="col">
                                     <label for="exampleFormControlInput1" class="form-label">Pickup Location : </label>
                                     <select class="custom-select" id="inputGroupSelect01" name="pickup_location">
-                                        <option selected>Choose...</option>
+                                        <option selected>Choose pickup location...</option>
                                         <option value="Nairobi CBD">Nairobi CBD</option>
                                         <option value="Nakuru">Nakuru</option>
                                         <option value="Kikuyu">Kikuyu</option>
@@ -103,20 +100,14 @@ if (isset($_GET['logout'])) {
                                     <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="order_date" id="order_date" min="1" max="" placeholder="Order Date" required>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Ordered Products : </label>
-                                    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="product_name" value="<?php
-                                                                                                                                                print_r($idItems)
-                                                                                                                                                ?>" min="1" max="" placeholder="product_name" readonly>
-                                </div>
-                                <div class="col">
-                                    <label for="total price" class="form-label">Total Price:</label>
-                                    <input type="text" class="form-control mb-2 mr-sm-2" name="total_price" value="<?php echo "$ " . number_format($total_price, 2); ?>" readonly>
-                                </div>
-                            </div>
                             <button type="submit" class="btn btn-info btn-lg btn-block mb-2" name="makeOrder"> Make Order </button>
                     </form>
+                </div>
+                <div id="second" class="tab">
+                    <?php
+                    include('cart.php');
+                    ?>
+                    <br>
                 </div>
             </div>
         </div>
