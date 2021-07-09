@@ -39,19 +39,20 @@ if (isset($_POST['makeOrder'])) {
     else{
         echo"<script>alert('Something wrong!!!');</script>";
     }
-  	header('location: order.php');
+  	header('location: orderform.php');
   
 }
 
 // Add item
-if (isset($_POST['cartdetails'])) {
+if (isset($_POST['cartdetails'])) {  
   // receive all input values from the form
   $product_id=mysqli_real_escape_string($db, $_POST['product_id']);
   $amount=mysqli_real_escape_string($db, $_POST['amount']);
   $order_quantity=mysqli_real_escape_string($db, $_POST['order_quantity']);
   $order_id = mysqli_real_escape_string($db, $_POST['order_id']);
     $query = "INSERT INTO order_details (product_id,amount,order_quantity,order_id) 
-  			  VALUES('$product_id','$amount','$order_quantity','$order_id')";
+  			  VALUES
+          ('$product_id','$amount','$order_quantity','$order_id')";
       if(mysqli_query($db, $query))
       {
       echo "<script>alert('Successfully stored');</script>";	

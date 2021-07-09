@@ -117,7 +117,7 @@ if (!empty($_GET["action"])) {
 				foreach ($product_array as $key => $value) {
 			?>
 					<div class="card-deck">
-						<div class="card">
+						<div class="card" style="margin-bottom: 10px;">
 							<form method="post" action="orderform.php?action=add&product_id=<?php echo $product_array[$key]["product_id"]; ?>">
 								<div class="product-tile-footer">
 									<div style="display: flex;">
@@ -141,10 +141,10 @@ if (!empty($_GET["action"])) {
 	<div>
 		<form method="POST" action="makeorder.php">
 			<input type="hidden" value="
-		<?php
+			<?php
 		foreach ($_SESSION["cart_item"] as $item) {
 			$product_id = $item["product_id"];
-			echo $product_id . ' ';
+			echo $product_id  . ' ';
 		}
 		?>
 		" name="product_id" readonly>
@@ -175,7 +175,7 @@ if (!empty($_GET["action"])) {
 		}
 		?>
 		" name="order_quantity" readonly>
-			<button class="btn btn-primary" name="cartdetails" type="submit">Submit Order</button>
+			<button class="btn btn-lg btn-primary" name="cartdetails" style="margin: 10px;" type="submit">Submit Order</button>
 		</form>
 	</div>
 </BODY>

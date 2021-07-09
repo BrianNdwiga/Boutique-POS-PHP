@@ -159,6 +159,7 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">Order Date</th>
                                                         <th scope="col">Pick-Up Location</th>
                                                         <th scope="col">Served By</th>
+                                                        <th scope="col">Details</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -179,9 +180,10 @@ if (isset($_GET['logout'])) {
                                                                 <th><?php echo $row["order_date"]  ?></th>
                                                                 <th><?php echo $row["pickup_location"]  ?></th>
                                                                 <th><?php echo $row["served_by"]  ?></th>
+                                                                <th><a href="up" Details</a><a href="../orders/order_details.php?id=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px">Details</a></th>
                                                                 <th>
-                                                                    <a href="up" Edit</a><a href="./orders/editorder.php=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> </a>
-                                                                    <a href="up" Edit</a><a href="../orders/deleteorder.php=<?php echo $row["order_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                                                                    <a href="up" Edit</a><a href="../orders/editorder.php?id=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> </a>
+                                                                    <a href="up" Edit</a><a href="../orders/deleteorder.php?id=<?php echo $row["order_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
                                                                 </th>
                                                             </tr>
                                                     <?php

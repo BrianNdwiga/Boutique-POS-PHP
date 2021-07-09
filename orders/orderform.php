@@ -37,7 +37,7 @@ if (isset($_GET['logout'])) {
     <title>Make Order</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
@@ -62,7 +62,8 @@ if (isset($_GET['logout'])) {
             <div class="tabs">
                 <div id="first" class="tab">
                     <h3 style="padding: 10px; text-align:center;">Add Orders</h3>
-                    <form method="post" action="makeorder.php">
+                    <p id="successMessage">You submitted the form, good job!</p>
+                    <form method="post" id="theForm" action="makeorder.php" target="_blank">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="form-group">
@@ -103,12 +104,11 @@ if (isset($_GET['logout'])) {
                             <button type="submit" class="btn btn-info btn-lg btn-block mb-2" name="makeOrder"> Make Order </button>
                     </form>
                 </div>
-                <div id="second" class="tab">
-                    <?php
-                    include('cart.php');
-                    ?>
-                    <br>
-                </div>
+            </div>
+            <div id="second" class="tab">
+                <?php
+                include('cart.php');
+                ?>
             </div>
         </div>
         <div class="card-footer">
@@ -286,6 +286,18 @@ if (isset($_GET['logout'])) {
         }
 
         x[n].className += " active";
+    }
+
+    // on form submit
+    var theSubmitButton = document.getElementById('formSubmit');
+
+    theSubmitButton.onclick = function() {
+        var theFormItself =
+            document.getElementById('theForm');
+        theFormItself.style.display = 'none';
+        var theSuccessMessage =
+            document.getElementById('successMessage');
+        theSuccessMessage.style.display = 'block';
     }
 </script>
 

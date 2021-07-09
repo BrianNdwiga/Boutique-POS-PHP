@@ -46,7 +46,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 <body>
 
     <div class="container">
-        <a class="back" href="table.php">
+        <a class="back" href="product.php">
             <i class="fas fa-arrow-left"></i>
             Back to Products Page
         </a>
