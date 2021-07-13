@@ -14,6 +14,7 @@ if (isset($_GET['logout'])) {
 
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -59,7 +60,7 @@ if (isset($_GET['logout'])) {
             <div class="main-menu">
                 <div class="menu-inner">
                     <nav>
-                    <ul class="metismenu" id="menu">
+                        <ul class="metismenu" id="menu">
                             <li>
                                 <a href="../index.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
                             </li>
@@ -67,7 +68,7 @@ if (isset($_GET['logout'])) {
                                 <a href="../orders/order.php" aria-expanded="true"><i class="fa fa-shopping-cart"></i>
                                     <span>Orders</span></a>
                             </li>
-                            <li  class="active">
+                            <li class="active">
                                 <a href="../product/product.php" aria-expanded="true"><i class="fa fa-table"></i>
                                     <span>Item Records</span></a>
                             </li>
@@ -134,15 +135,52 @@ if (isset($_GET['logout'])) {
             <div class="container">
 
                 <h1 style="text-align:center">Add Item Here</h1>
+                <!-- Button trigger modal -->
+                <div style="padding: 10px;">
+                    <button type="button" class="btn btn-primary" style="margin-left: 75%;" data-toggle="modal" data-target="#exampleModalCenter">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
 
                 <body class="col-lg-12">
-                    <form method="POST" class="form-inline" action="./additem.php" style="align-items: center; justify-content: center;">
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="product_name" placeholder="product_name" required>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="price" placeholder="price" required>
-                        <input type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="quantity" id="quantity" min="1" max="" placeholder="Quantity" required>
-                        <button type="submit" class="btn btn-primary mb-2" name="add"><i class="fas fa-plus"></i> Add item</button>
-                    </form>
-
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="./additem.php" style="align-items: center; justify-content: center;">
+                                        <div class="form-group">
+                                        <label for="exampleInputPassword1">Product Name</label>
+                                            <input type="text" class="form-control" id="inlineFormInputName2" name="name" placeholder="Product Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Unit Price</label>
+                                            <input type="number" class="form-control" id="inlineFormInputName2" name="price" placeholder="price" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Quantity</label>
+                                            <input type="number" class="form-control" id="inlineFormInputName2" name="quantity" id="quantity" min="1" max="" placeholder="Quantity" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Description</label>
+                                            <textarea name="description" class="form-control" id="exampleFormControlTextarea3" rows="3"></textarea>
+                                        </div>
+                                    
+                                        <button type="submit" class="btn btn-info btn-lg btn-block" name="add"> Add item</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </body>
                 <div class="main-content-inner">
                     <div class="row">
@@ -159,6 +197,7 @@ if (isset($_GET['logout'])) {
                                                     <tr class="table-active">
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Name</th>
+                                                        <th scope="col">Description</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Action</th>
@@ -166,8 +205,8 @@ if (isset($_GET['logout'])) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM `product`;";
+                                                    $conn = new mysqli("localhost", "root", "", "boutique_pos");
+                                                    $sql = "SELECT * FROM `products`;";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -177,12 +216,13 @@ if (isset($_GET['logout'])) {
                                                     ?>
                                                             <tr>
                                                                 <th><?php echo $count ?></th>
-                                                                <th><?php echo $row["product_name"] ?></th>
+                                                                <th><?php echo $row["name"] ?></th>
+                                                                <th><?php echo $row["description"] ?></th>
                                                                 <th><?php echo $row["price"]  ?></th>
                                                                 <th><?php echo $row["quantity"]  ?></th>
                                                                 <th>
-                                                                    <a href="up" Edit</a><a href="../product/editproduct.php?id=<?php echo $row["product_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                    <a href="up" Edit</a><a href="../product/deleteproduct.php?id=<?php echo $row["product_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                    <a href="up" Edit</a><a href="../product/editproduct.php?id=<?php echo $row["id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
+                                                                        <a href="up" Edit</a><a href="../product/deleteproduct.php?id=<?php echo $row["id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                 </th>
                                                             </tr>
                                                     <?php

@@ -13,7 +13,7 @@
 ?>
 <?php
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'inventorymanagement');
+$db = mysqli_connect('localhost', 'root', '', 'boutique_pos');
 if (mysqli_connect_errno())
     {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -22,9 +22,6 @@ if (mysqli_connect_errno())
 // Add item
 if (isset($_POST['makeOrder'])) {
   // receive all input values from the form
-  // echo "connect";
-  // $product_name=mysqli_real_escape_string($db, $_POST['product_name']);
-  // $total_price=mysqli_real_escape_string($db, $_POST['total_price']);
   $order_date=mysqli_real_escape_string($db, $_POST['order_date']);
   $pickup_location=mysqli_real_escape_string($db, $_POST['pickup_location']);
   $customer_id=mysqli_real_escape_string($db, $_POST['customer_id']);
@@ -62,6 +59,6 @@ if (isset($_POST['cartdetails'])) {
     }
   	
   	header('location: order.php');
-  
+    
 }
 ?>

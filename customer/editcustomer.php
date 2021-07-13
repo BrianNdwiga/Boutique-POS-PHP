@@ -4,11 +4,14 @@ include('../config/config.php');
 
 if (isset($_POST['editcustomer'])) {
     $id = $_POST['id'];
-    $customer_name = mysqli_real_escape_string($db, $_POST['customer_name']);
-    $phone_number = mysqli_real_escape_string($db, $_POST['phone_number']);
-    $added_date = mysqli_real_escape_string($db, $_POST['added_date']);
+    $first_name = mysqli_real_escape_string($db, $_POST['first_name']);
+    $last_name = mysqli_real_escape_string($db, $_POST['last_name']);
+    $phone = mysqli_real_escape_string($db, $_POST['phone']);
+    $created = mysqli_real_escape_string($db, $_POST['created']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $address = mysqli_real_escape_string($db, $_POST['address']);
 
-    mysqli_query($db, "UPDATE customer SET customer_name='$customer_name', phone_number='$phone_number' ,added_date='$added_date' WHERE customer_id='$id'");
+    mysqli_query($db, "UPDATE customers SET first_name='$first_name',last_name='$last_name', phone='$phone' ,created='$created',email='$email',address='$address' WHERE id='$id'");
 
     header("Location:customer.php");
 }
@@ -17,16 +20,19 @@ if (isset($_POST['editcustomer'])) {
 if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
 
     $id = $_GET['id'];
-    $result = mysqli_query($db, "SELECT * FROM customer WHERE customer_id=" . $_GET['id']);
+    $result = mysqli_query($db, "SELECT * FROM customers WHERE id=" . $_GET['id']);
 
     $row = mysqli_fetch_array($result);
 
     if ($row) {
 
-        $id = $row['customer_id'];
-        $customer_name = $row['customer_name'];
-        $phone_number = $row['phone_number'];
-        $added_date = $row['added_date'];
+        $id = $row['id'];
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $phone = $row['phone'];
+        $email = $row['email'];
+        $created = $row['created'];
+        $address = $row['address'];
     } else {
         echo "No results!";
     }
@@ -55,18 +61,48 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
         <form method="post" action="editcustomer.php">
             <div class="form-group">
                 <input class="form-control" type="hidden" name="id" value="<?php echo $id; ?>">
-                <label class="form-check-label" for="inlineFormCheck">
-                   Customer Name :
-                </label>
-                <input type="text" name="customer_name" class="form-control" value="<?php echo $customer_name; ?>" />
-                <label class="form-check-label" for="inlineFormCheck">
-                    Phone Number :
-                </label>
-                <input type="text" name="phone_number" class="form-control" value="<?php echo $phone_number ?>" />
-                <label class="form-check-label" for="inlineFormCheck">
-                    Added Date :
-                </label>
-                <input type="date" name="added_date" class="form-control" value="<?php echo $added_date; ?>" />
+                <div class="form-row">
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            First Name :
+                        </label>
+                        <input type="text" name="first_name" class="form-control" value="<?php echo $first_name; ?>" />
+                    </div>
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Last Name :
+                        </label>
+                        <input type="text" name="last_name" class="form-control" value="<?php echo $last_name; ?>" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Phone Number :
+                        </label>
+                        <input type="tel" name="phone" class="form-control" value="<?php echo $phone ?>" />
+                    </div>
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Address :
+                        </label>
+                        <input type="address" name="address" class="form-control" value="<?php echo $address; ?>" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Email :
+                        </label>
+                        <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" readonly />
+                    </div>
+                    <div class="col-6">
+                        <label class="form-check-label" for="inlineFormCheck">
+                            Date :
+                        </label>
+                        <input type="text" name="created" class="form-control" value="<?php echo $created; ?>" readonly />
+                    </div>
+                </div>
                 <br>
                 <button type="submit" class="btn btn-lg btn-block btn-info" name="editcustomer">Edit Records</button>
         </form>
@@ -92,6 +128,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
         background-color: #7798AB;
         color: white;
         text-decoration: none;
+    }
+
+    .form-check-label {
+        padding: 10px;
     }
 </style>
 

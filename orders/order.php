@@ -144,7 +144,7 @@ if (isset($_GET['logout'])) {
                                 <div class="card-body">
                                     <div class="toptable">
                                         <h4 class="header-title col col-lg-8">Orders</h4>
-                                        <a href="orderform.php" class="col">
+                                        <a href="./cart/orderform.php" class="col">
                                             <button class="btn btn-primary"><i class="fas fa-plus"></i> Make Order Here</button>
                                         </a>
                                     </div>
@@ -157,7 +157,7 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">Customer Name</th>
                                                         <th scope="col">Phone Number</th>
                                                         <th scope="col">Order Date</th>
-                                                        <th scope="col">Pick-Up Location</th>
+                                                        <th scope="col">Email</th>
                                                         <th scope="col">Served By</th>
                                                         <th scope="col">Details</th>
                                                         <th scope="col">Action</th>
@@ -165,8 +165,8 @@ if (isset($_GET['logout'])) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT order_id,order_date,customer_name,phone_number,pickup_location,served_by FROM `orders` AS o LEFT JOIN `customer` As c ON o.customer_id=c.customer_id ORDER BY order_id ASC;";
+                                                    $conn = new mysqli("localhost", "root", "", "boutique_pos");
+                                                    $sql = "SELECT o.*,o.id AS id, c.first_name, c.last_name, c.email, c.phone FROM orders as o LEFT JOIN customers as c ON c.id = o.customer_id";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -175,15 +175,15 @@ if (isset($_GET['logout'])) {
                                                     ?>
                                                             <tr>
                                                                 <th><?php echo $count ?></th>
-                                                                <th><?php echo $row["customer_name"] ?></th>
-                                                                <th><?php echo $row["phone_number"] ?></th>
-                                                                <th><?php echo $row["order_date"]  ?></th>
-                                                                <th><?php echo $row["pickup_location"]  ?></th>
+                                                                <th><?php echo $row["first_name"] ?> <?php echo $row["last_name"] ?></th>
+                                                                <th><?php echo $row["phone"] ?></th>
+                                                                <th><?php echo $row["created"]  ?></th>
+                                                                <th><?php echo $row["email"]  ?></th>
                                                                 <th><?php echo $row["served_by"]  ?></th>
-                                                                <th><a href="up" Details</a><a href="../orders/order_details.php?id=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px">Details</a></th>
+                                                                <th><a href="up" Details</a><a href="../orders/order_details.php?id=<?php echo $row["id"] ?>" style="color:#7798AB; padding-right: 10px">Details</a></th>
                                                                 <th>
-                                                                    <a href="up" Edit</a><a href="../orders/editorder.php?id=<?php echo $row["order_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> </a>
-                                                                    <a href="up" Edit</a><a href="../orders/deleteorder.php?id=<?php echo $row["order_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                                                                    <a href="up" Edit</a><a href="../orders/editorder.php?id=<?php echo $row["id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> </a>
+                                                                    <a href="up" Edit</a><a href="../orders/deleteorder.php?id=<?php echo $row["id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
                                                                 </th>
                                                             </tr>
                                                     <?php

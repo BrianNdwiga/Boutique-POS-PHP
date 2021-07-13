@@ -13,14 +13,8 @@
 ?>
 <?php
 
-
-// initializing variables
-// $customer_name = "";
-// $product    = "";
-
-
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'inventorymanagement');
+$db = mysqli_connect('localhost', 'root', '', 'boutique_pos');
 if (mysqli_connect_errno())
     {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();

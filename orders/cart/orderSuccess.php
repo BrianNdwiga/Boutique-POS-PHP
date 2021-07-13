@@ -1,10 +1,10 @@
 <?php
 if (!isset($_REQUEST['id'])) {
-    header("Location: order.php");
+    header("Location: index.php");
 }
 
 // Include the database config file 
-require_once '../config/config.php';
+require_once 'dbConfig.php';
 
 // Fetch order details from database 
 $result = $db->query("SELECT r.*, c.first_name, c.last_name, c.email, c.phone FROM orders as r LEFT JOIN customers as c ON c.id = r.customer_id WHERE r.id = " . $_REQUEST['id']);
@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
 <html>
 
 <head>
-    <title>Order Details</title>
+    <title>Make Order</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
@@ -31,12 +31,15 @@ if ($result->num_rows > 0) {
 <body>
     <div class="card">
         <div class="card-header">
-            <h2 style="text-align: center;">Order Details</h2>
+            <h2 style="text-align: center;">Order Status</h2>
         </div>
         <div id="cardBody" class="card-body">
             <div class="container">
                 <div class="col-12">
                     <?php if (!empty($orderInfo)) { ?>
+                        <div class="col-md-12">
+                            <div class="alert alert-success">Your order has been placed successfully.</div>
+                        </div>
                         <div class="hdr" style="padding-left: 20px;">
                             <h4>Order Info : </h4>
                         </div>
@@ -96,7 +99,7 @@ if ($result->num_rows > 0) {
             </div>
         </div>
         <div class="card-footer">
-            <a class="back" href="order.php">
+            <a class="back" href="../order.php">
                 <i class="fas fa-arrow-left"></i>
                 Back to Orders Page
             </a>

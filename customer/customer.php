@@ -160,6 +160,8 @@ if (isset($_GET['logout'])) {
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Customer Name</th>
                                                         <th scope="col">Phone Number</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Address</th>
                                                         <th scope="col">Added Date</th>
                                                         <th scope="col">View</th>
                                                         <th scope="col">Action</th>
@@ -167,8 +169,8 @@ if (isset($_GET['logout'])) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $conn = new mysqli("localhost", "root", "", "inventorymanagement");
-                                                    $sql = "SELECT * FROM customer";
+                                                    $conn = new mysqli("localhost", "root", "", "boutique_pos");
+                                                    $sql = "SELECT DISTINCT id,first_name,last_name,phone,email,created,address FROM customers;";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
                                                     if ($result->num_rows >  0) {
@@ -178,13 +180,15 @@ if (isset($_GET['logout'])) {
                                                     ?>
                                                             <tr>
                                                                 <th><?php echo $count ?></th>
-                                                                <th><?php echo $row["customer_name"] ?></th>
-                                                                <th><?php echo $row["phone_number"]  ?></th>
-                                                                <th><?php echo $row["added_date"]  ?></th>
-                                                                <th><a href="up" Edit</a><a href="../customer/customerorders.php?id=<?php echo $row["customer_id"] ?>" style="color:purple; cursor:pointer;">All Transactions</a></th>
+                                                                <th><?php echo $row["first_name"] ?> <?php echo $row["last_name"] ?></th>
+                                                                <th><?php echo $row["phone"]  ?></th>
+                                                                <th><?php echo $row["email"]  ?></th>
+                                                                <th><?php echo $row["address"]  ?></th>
+                                                                <th><?php echo $row["created"]  ?></th>
+                                                                <th><a href="up" Edit</a><a href="../customer/customerorders.php?id=<?php echo $row["id"] ?>" style="color:purple; cursor:pointer;">All Transactions</a></th>
                                                                     <th> 
-                                                                    <a href="up" Edit</a><a href="../customer/editcustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
-                                                                    <a href="up" Edit</a><a href="../customer/deletecustomer.php?id=<?php echo $row["customer_id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
+                                                                    <a href="up" Edit</a><a href="../customer/editcustomer.php?id=<?php echo $row["id"] ?>" style="color:#7798AB; padding-right: 10px"><i class="fas fa-edit"></i> Edit </a>
+                                                                    <a href="up" Edit</a><a href="../customer/deletecustomer.php?id=<?php echo $row["id"] ?>" style="color:red;"><i class="fas fa-trash-alt"></i></a>
                                                                     </th>
                                                             </tr>
                                                     <?php
