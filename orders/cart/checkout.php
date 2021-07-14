@@ -75,7 +75,7 @@ if(!empty($sessData['status']['msg'])){
                     <h4 class="mb-3">Contact Details</h4>
                     <form method="post" action="cartAction.php">
                         <div class="row">
-                        <input type="text" class="form-control" value="<?php echo $_SESSION['username'] ?>" name="served_by">
+                        <input type="hidden" class="form-control" value="<?php echo $_SESSION['username'] ?>" name="served_by" readonly>
                             <div class="col-md-6 mb-3">
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" name="first_name" value="<?php echo !empty($postData['first_name'])?$postData['first_name']:''; ?>" required>
